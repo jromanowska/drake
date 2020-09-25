@@ -9,11 +9,12 @@ preprocessData <- function(data) {
                                 T  ~ 'Weekday')) %>%
     ungroup() %>%
     mutate(day_type = as.factor(day_type)) %>%
-    select(day_type, temp, hour, traffic_volume)
+    select(day_type, temp, hour, traffic_volume) %>%
+    split(.$day_type)
 }
 
 fitModel <- function(data, gam_k) {
-  gam(traffic_volume ~ s(hour, k = gam_k) + day_type + temp, data = data)
+  gam(traffic_volume ~ s(hour, k = gam_k) + temp, data = data)
 }
 
 predictNewData <- function(model, newdata) {

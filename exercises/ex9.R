@@ -4,3 +4,7 @@
 # - use `split()` inside data preprocessing to create separate subtarger for each day_type
 # - in next target(s) use `dynamic = map(...)` for iteration over subtargets
 # - HINT: In plan, change data to data[[1]]
+
+setwd("../EX5/")
+r_make()
+
