@@ -1,0 +1,30 @@
+---
+title: "Report"
+author: Julia R
+output: html_document
+params:
+  model: "`r id_chr()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(drake)
+library(ggplot2)
+
+loadd(params$model)
+```
+
+## Test set performance
+
+```{r}
+summary(params$model)
+```
+
+```{r}
+ggplot(test_predictions, aes(prediction, traffic_volume, color = day_type)) +
+  geom_point(alpha = 0.02) +
+  geom_smooth()
+```
+
+
